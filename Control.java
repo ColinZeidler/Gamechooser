@@ -7,14 +7,16 @@ import javax.swing.JFrame;
 public class Control extends JFrame{
 	private static Control frame;
 	private View view;
+	private Model model;
 	
 	
 	public Control(String title) {
 		super(title);
-		view = new View();
-		
+		model = new Model();
+		view = new View(model);
+		getContentPane().setPreferredSize(view.getPreferredSize());
+		pack();		
 		add(view);
-		setSize(200, 150);
 		
 		view.getGetButton().addActionListener(new ActionListener() {
 			@Override

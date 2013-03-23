@@ -8,9 +8,17 @@ public class Game {
 		favourite = fav;
 	}
 	
+	public Game(String aName) {
+		name = aName;
+	}
+	
 	public String getName() { return name; }
 	public boolean isFav() { return favourite; }
 	
 	public void setFav(boolean fav) { favourite = fav; }
+	
+	public String toString() {
+		return name;
+	}
 
 }
