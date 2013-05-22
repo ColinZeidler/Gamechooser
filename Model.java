@@ -1,8 +1,15 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
 public class Model {
 	private ArrayList<Game> gamesList;
+	private String saveLocation = "gamelist.dat";
 	public Model() {
 		gamesList = new ArrayList<Game>();
 		
@@ -34,6 +41,65 @@ public class Model {
 	public void addGame(Game g) {
 		System.out.println(g);
 		gamesList.add(g);
+	}
+	
+	public void favGame(Game g) {
+		for (Game game: gamesList) {
+			if (game.equals(g)) {
+				g.setFav(true);
+				break;
+			}
+		}
+	}
+	
+	public ArrayList<Game> getFavList() {
+		ArrayList<Game> favList = new ArrayList<Game>();
+		for (Game game: gamesList) {
+			if (game.isFav()) {
+				favList.add(game);
+			}
+		}
+		return favList;
+	}
+	
+	public void loadList() {
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(saveLocation));
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void saveList() {
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveLocation));
+			for (Game game: gamesList) {
+				out.writeObject(game);
+			}
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Game randomGame(boolean favFilter) {
+		ArrayList<Game> gamePool = new ArrayList<Game>();
+		for (Game game: gamesList) {
+			if (game.isFav()) {
+				gamePool.add(game);
+			}
+			else if (!favFilter) {
+				gamePool.add(game);
+			}
+		}
+		
+		return gamePool.get((int) Math.floor(Math.random() * gamePool.size()));
 	}
 
 }

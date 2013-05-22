@@ -1,5 +1,5 @@
 
-public class Game {
+public class Game implements java.io.Serializable{
 	private String name;
 	private boolean favourite;
 	

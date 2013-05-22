@@ -20,9 +20,27 @@ public class Control extends JFrame{
 		
 		view.getGetButton().addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {handleGetGame();}});
+			public void actionPerformed(ActionEvent e) {handleGetGame();}});
+		
+		view.getSaveButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {handleSave();}});
+		
+		view.getLoadButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {handleLoad();}});
 	}
 	
+	protected void handleLoad() {
+		model.loadList();
+		
+	}
+
+	protected void handleSave() {
+		model.saveList();
+		
+	}
+
 	protected void handleGetGame() {
 		System.out.println("Get game clicked!");
 		

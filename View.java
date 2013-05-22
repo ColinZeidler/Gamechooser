@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class View extends JPanel {
-	private JButton getGame;
+	private JButton getGame, save, load;
 	private JList<String> gameList;
 	private JLabel gameListLabel;
 	private Model model;
@@ -34,6 +34,28 @@ public class View extends JPanel {
 		constraints.weighty = 0;
 		layout.setConstraints(getGame, constraints);
 		add(getGame);
+		
+		save = new JButton("Save");
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 0;
+		constraints.weighty = 0;
+		layout.setConstraints(save, constraints);
+		add(save);
+		
+		load = new JButton("Load");
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 0;
+		constraints.weighty = 0;
+		layout.setConstraints(load, constraints);
+		add(load);
 
 		// List
 		gameList = new JList<String>();
@@ -43,7 +65,7 @@ public class View extends JPanel {
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
+		constraints.gridheight = 3;
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.weightx = 1;
 		constraints.weighty = 1;
@@ -57,6 +79,13 @@ public class View extends JPanel {
 		return getGame;
 	}
 
+	public JButton getSaveButton() {
+		return save;
+	}
+	
+	public JButton getLoadButton() {
+		return load;
+	}
 	public void update() {
 		String[] gameArray = new String[model.getGames().size()];
 		for (int i = 0; i < gameArray.length; i++) {
@@ -64,5 +93,6 @@ public class View extends JPanel {
 		}
 		gameList.setListData(gameArray);
 	}
+
 
 }
