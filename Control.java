@@ -42,7 +42,7 @@ public class Control extends JFrame{
 	}
 
 	protected void handleGetGame() {
-		System.out.println("Get game clicked!");
+		System.out.println(model.randomGame(false));
 		
 	}
 

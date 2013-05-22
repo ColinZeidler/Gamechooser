@@ -98,6 +98,7 @@ public class Model {
 				gamePool.add(game);
 			}
 		}
+		if (gamePool.size()== 0) return null;
 		
 		return gamePool.get((int) Math.floor(Math.random() * gamePool.size()));
 	}
