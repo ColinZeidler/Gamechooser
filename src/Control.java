@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 
 public class Control extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private static Control frame;
 	private View view;
 	private Model model;
@@ -42,8 +43,9 @@ public class Control extends JFrame{
 	}
 
 	protected void handleGetGame() {
-		System.out.println(model.randomGame(false));
-		
+		model.randomGame(false);
+		System.out.println(model.getGameToPlay());
+		view.update();
 	}
 
 	public static void main(String[] args) {

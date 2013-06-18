@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Model {
 	private ArrayList<Game> gamesList;
 	private String saveLocation = "gamelist.dat";
+	private Game gameToPlay;
 	public Model() {
 		gamesList = new ArrayList<Game>();
 		
@@ -88,7 +89,7 @@ public class Model {
 		}
 	}
 	
-	public Game randomGame(boolean favFilter) {
+	public void randomGame(boolean favFilter) {
 		ArrayList<Game> gamePool = new ArrayList<Game>();
 		for (Game game: gamesList) {
 			if (game.isFav()) {
@@ -98,9 +99,12 @@ public class Model {
 				gamePool.add(game);
 			}
 		}
-		if (gamePool.size()== 0) return null;
-		
-		return gamePool.get((int) Math.floor(Math.random() * gamePool.size()));
+		if (gamePool.size()== 0) gameToPlay = null;
+		gameToPlay = gamePool.get((int) Math.floor(Math.random() * gamePool.size()));
+	}
+	
+	public Game getGameToPlay() {
+		return gameToPlay;
 	}
 
 }
